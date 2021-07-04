@@ -11,12 +11,12 @@ edition = "2018"
 
 [features]
 nightly = []
-derive = ["jrsonnet-gc_derive"]
+derive = ["jrsonnet-gc-derive"]
 unstable-config = []
 unstable-stats = []
 
 [dependencies]
-jrsonnet-gc_derive = { path = "../gc_derive", version = "0.4.1", optional = true }
+jrsonnet-gc-derive = { path = "../gc_derive", version = "0.4.1", optional = true }
 
 [dev-dependencies]
-jrsonnet-gc_derive = { path = "../gc_derive", version = "0.4.1" }
+jrsonnet-gc-derive = { path = "../gc_derive", version = "0.4.1" }

@@ -19,38 +19,38 @@ fn derive_trace(mut s: Structure<'_>) -> proc_macro2::TokenStream {
 
     s.add_bounds(AddBounds::Fields);
     let trace_impl = s.unsafe_bound_impl(
-        quote!(::gc::Trace),
+        quote!(::jrsonnet_gc::Trace),
         quote! {
             #[inline] unsafe fn trace(&self) {
                 #[allow(dead_code)]
                 #[inline]
-                unsafe fn mark<T: ::gc::Trace + ?Sized>(it: &T) {
-                    ::gc::Trace::trace(it);
+                unsafe fn mark<T: ::jrsonnet_gc::Trace + ?Sized>(it: &T) {
+                    ::jrsonnet_gc::Trace::trace(it);
                 }
                 match *self { #trace_body }
             }
             #[inline] unsafe fn root(&self) {
                 #[allow(dead_code)]
                 #[inline]
-                unsafe fn mark<T: ::gc::Trace + ?Sized>(it: &T) {
-                    ::gc::Trace::root(it);
+                unsafe fn mark<T: ::jrsonnet_gc::Trace + ?Sized>(it: &T) {
+                    ::jrsonnet_gc::Trace::root(it);
                 }
                 match *self { #trace_body }
             }
             #[inline] unsafe fn unroot(&self) {
                 #[allow(dead_code)]
                 #[inline]
-                unsafe fn mark<T: ::gc::Trace + ?Sized>(it: &T) {
-                    ::gc::Trace::unroot(it);
+                unsafe fn mark<T: ::jrsonnet_gc::Trace + ?Sized>(it: &T) {
+                    ::jrsonnet_gc::Trace::unroot(it);
                 }
                 match *self { #trace_body }
             }
             #[inline] fn finalize_glue(&self) {
-                ::gc::Finalize::finalize(self);
+                ::jrsonnet_gc::Finalize::finalize(self);
                 #[allow(dead_code)]
                 #[inline]
-                fn mark<T: ::gc::Trace + ?Sized>(it: &T) {
-                    ::gc::Trace::finalize_glue(it);
+                fn mark<T: ::jrsonnet_gc::Trace + ?Sized>(it: &T) {
+                    ::jrsonnet_gc::Trace::finalize_glue(it);
                 }
                 match *self { #trace_body }
             }
@@ -65,8 +65,8 @@ fn derive_trace(mut s: Structure<'_>) -> proc_macro2::TokenStream {
             quote!(::std::ops::Drop),
             quote! {
                 fn drop(&mut self) {
-                    if ::gc::finalizer_safe() {
-                        ::gc::Finalize::finalize(self);
+                    if ::jrsonnet_gc::finalizer_safe() {
+                        ::jrsonnet_gc::Finalize::finalize(self);
                     }
                 }
             },
@@ -80,7 +80,7 @@ fn derive_trace(mut s: Structure<'_>) -> proc_macro2::TokenStream {
         s.bind_with(|_| BindStyle::Move);
         let trivially_drop_body = s.each(|_| quote! {});
         let finalize_impl = s.bound_impl(
-            quote!(::gc::Finalize),
+            quote!(::jrsonnet_gc::Finalize),
             quote!(
                 fn finalize(&self) {
                     let _trivially_drop = |t: Self| match t { #trivially_drop_body };
@@ -98,5 +98,5 @@ fn derive_trace(mut s: Structure<'_>) -> proc_macro2::TokenStream {
 decl_derive!([Finalize] => derive_finalize);
 
 fn derive_finalize(s: Structure<'_>) -> proc_macro2::TokenStream {
-    s.unbound_impl(quote!(::gc::Finalize), quote!())
+    s.unbound_impl(quote!(::jrsonnet_gc::Finalize), quote!())
 }

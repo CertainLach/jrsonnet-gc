@@ -1,5 +1,5 @@
-use gc_derive::{Finalize, Trace};
-use gc::Gc;
+use jrsonnet_gc_derive::{Finalize, Trace};
+use jrsonnet_gc::Gc;
 
 // This impl should *not* require T: Trace.
 #[derive(Finalize, Trace)]

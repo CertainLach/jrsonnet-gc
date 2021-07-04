@@ -27,7 +27,7 @@ mod gc;
 mod trace;
 
 #[cfg(feature = "derive")]
-pub use gc_derive::{Finalize, Trace};
+pub use jrsonnet_gc_derive::{Finalize, Trace};
 
 // We re-export the Trace method, as well as some useful internal methods for
 // managing collections or configuring the garbage collector.
@@ -64,7 +64,7 @@ impl<T: Trace> Gc<T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::Gc;
+    /// use jrsonnet_gc::Gc;
     ///
     /// let five = Gc::new(5);
     /// assert_eq!(*five, 5);
@@ -144,7 +144,7 @@ impl<T: Trace + ?Sized> Gc<T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::Gc;
+    /// use jrsonnet_gc::Gc;
     ///
     /// let x = Gc::new(22);
     /// let x_ptr = Gc::into_raw(x);
@@ -170,7 +170,7 @@ impl<T: Trace + ?Sized> Gc<T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::Gc;
+    /// use jrsonnet_gc::Gc;
     ///
     /// let x = Gc::new(22);
     /// let x_ptr = Gc::into_raw(x);
@@ -523,7 +523,7 @@ impl<T: Trace + ?Sized> GcCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::GcCell;
+    /// use jrsonnet_gc::GcCell;
     ///
     /// let c = GcCell::new(5);
     ///
@@ -565,7 +565,7 @@ impl<T: Trace + ?Sized> GcCell<T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::GcCell;
+    /// use jrsonnet_gc::GcCell;
     ///
     /// let c = GcCell::new(5);
     ///
@@ -695,7 +695,7 @@ impl<'a, T: ?Sized> GcCellRef<'a, T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::{GcCell, GcCellRef};
+    /// use jrsonnet_gc::{GcCell, GcCellRef};
     ///
     /// let c = GcCell::new((5, 'b'));
     /// let b1: GcCellRef<(u32, char)> = c.borrow();
@@ -730,7 +730,7 @@ impl<'a, T: ?Sized> GcCellRef<'a, T> {
     /// # Examples
     ///
     /// ```
-    /// use gc::{GcCell, GcCellRef};
+    /// use jrsonnet_gc::{GcCell, GcCellRef};
     ///
     /// let cell = GcCell::new((1, 'c'));
     /// let borrow = cell.borrow();
@@ -815,7 +815,7 @@ impl<'a, T: Trace + ?Sized, U: ?Sized> GcCellRefMut<'a, T, U> {
     /// # Examples
     ///
     /// ```
-    /// use gc::{GcCell, GcCellRefMut};
+    /// use jrsonnet_gc::{GcCell, GcCellRefMut};
     ///
     /// let c = GcCell::new((5, 'b'));
     /// {

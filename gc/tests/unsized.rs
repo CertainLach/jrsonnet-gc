@@ -1,5 +1,5 @@
-use gc::{Gc, Trace};
-use gc_derive::{Finalize, Trace};
+use jrsonnet_gc::{Gc, Trace};
+use jrsonnet_gc_derive::{Finalize, Trace};
 
 trait Foo: Trace {}
 

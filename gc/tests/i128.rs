@@ -1,4 +1,4 @@
-use gc::Gc;
+use jrsonnet_gc::Gc;
 
 #[test]
 fn i128() {

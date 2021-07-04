@@ -1,4 +1,4 @@
-use gc::{Gc, GcCell, GcCellRefMut};
+use jrsonnet_gc::{Gc, GcCell, GcCellRefMut};
 
 #[test]
 fn test_gc_cell_ref_mut_map() {

@@ -1,5 +1,5 @@
 [package]
-name = "jrsonnet-gc_derive"
+name = "jrsonnet-gc-derive"
 version = "0.4.1"
 authors = ["Manish Goregaokar <manishsmail@gmail.com>", "Nika Layzell <nika@thelayzells.com>"]
 
@@ -11,7 +11,7 @@ keywords = ["garbage", "macro", "memory"]
 edition = "2018"
 
 [lib]
-name = "gc_derive"
+name = "jrsonnet_gc_derive"
 proc-macro = true
 
 [dependencies]

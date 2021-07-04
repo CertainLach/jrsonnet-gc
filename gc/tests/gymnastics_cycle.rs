@@ -1,5 +1,5 @@
-use gc::{force_collect, Gc, GcCell};
-use gc_derive::Trace;
+use jrsonnet_gc::{force_collect, Gc, GcCell};
+use jrsonnet_gc_derive::Trace;
 use std::cell::Cell;
 
 thread_local!(static COUNTER: Cell<u8> = Cell::new(0u8));
@@ -10,7 +10,7 @@ struct Cyclic {
     name: u8,
 }
 
-impl gc::Finalize for Cyclic {
+impl jrsonnet_gc::Finalize for Cyclic {
     fn finalize(&self) {
         COUNTER.with(|count| count.set(count.get() + 1));
         println!("Dropped {}", self.name);
