@@ -135,6 +135,7 @@ simple_empty_finalize_trace![
     String,
     Box<str>,
     Rc<str>,
+    Rc<Path>,
     Path,
     PathBuf,
     NonZeroIsize,
