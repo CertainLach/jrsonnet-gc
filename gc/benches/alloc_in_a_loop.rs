@@ -6,16 +6,16 @@ const THING: u64 = 0;
 
 fn discard(b: &mut test::Bencher, n: usize) {
     b.iter(|| {
-        gc::force_collect();
+        jrsonnet_gc::force_collect();
         for _ in 0..n {
-            test::black_box(gc::Gc::new(THING));
+            test::black_box(jrsonnet_gc::Gc::new(THING));
         }
     })
 }
 fn keep(b: &mut test::Bencher, n: usize) {
     b.iter(|| {
-        gc::force_collect();
-        (0..n).map(|_| gc::Gc::new(THING)).collect::<Vec<_>>()
+        jrsonnet_gc::force_collect();
+        (0..n).map(|_| jrsonnet_gc::Gc::new(THING)).collect::<Vec<_>>()
     })
 }
 
