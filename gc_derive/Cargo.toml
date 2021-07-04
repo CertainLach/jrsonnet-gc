@@ -1,5 +1,5 @@
 [package]
-name = "gc_derive"
+name = "jrsonnet-gc_derive"
 version = "0.4.1"
 authors = ["Manish Goregaokar <manishsmail@gmail.com>", "Nika Layzell <nika@thelayzells.com>"]
 

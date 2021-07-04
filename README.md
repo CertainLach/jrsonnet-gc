@@ -1,5 +1,5 @@
-# rust-gc
-[![Build Status](https://travis-ci.org/Manishearth/rust-gc.svg?branch=master)](https://travis-ci.org/Manishearth/rust-gc)
+# jrsonnet-gc
+Forked from [Manishearth/rust-gc](https://github.com/Manishearth/rust-gc/) for jrsonnet specific changes, which couldn't be accepted on upstream
 
 Simple tracing (mark and sweep) garbage collector for Rust
 
